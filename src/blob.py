@@ -12,6 +12,7 @@ class Blob:
         self.path = list()
         self.order = None
         self.available = True
+        self.carrying_package = False
 
     def action(self, grid: list):
         """ follow the path """

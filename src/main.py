@@ -60,6 +60,8 @@ def main_game():
 def render_agents(blobs: deque):
     for blob in blobs:
         pygame.draw.rect(screen, blob.color, blob.rect, 0)
+        if blob.carrying_package:
+            pygame.draw.circle(screen, (0, 255, 0), blob.rect.center, 10)
 
 
 def starter(blobs: list, missions: deque) -> tuple:
@@ -89,7 +91,9 @@ def work(blob: Blob, mission: Order, graph: list):
             logging.info("Delivering package from: {} to {}".format(p3, p4))
             till_path = bfs(p3, p4, graph)
             blob.path = till_path
+            blob.carrying_package = True
             blob.action(graph)
+            blob.carrying_package = False
             p5 = translate_mouse_pos((blob.rect.x, blob.rect.y))
             packing = get_available_packing(PACKING_SPACES)
             PACKING_SPACES[packing] = 1

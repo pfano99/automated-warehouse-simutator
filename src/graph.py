@@ -7,8 +7,6 @@ class Grid:
         self.grid_type: int = grid_type
         self.position: tuple = position
         self.rect: Rect = Rect(position[0], position[1], size[0], size[0])
-        self.searched: int = 0
-        self.blob = None
 
 
 def generate_graph(rows: int, cols: int, packing_spaces: dict):
